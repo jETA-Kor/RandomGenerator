@@ -1,0 +1,174 @@
+/* 대표 CSS */
+
+body {
+    background-color: #E6E3D4;
+    font-family: 'Nanum Barun Gothic', 'Malgun Gothic', '맑은 고딕', 'Helvetica', 'helvetica';
+}
+
+.root {
+    width: 680px;
+    margin: auto;
+}
+
+.title {
+    background-color: #168ACC;
+    padding: 10px;
+    
+    font-size: 18pt;
+    height: 30px;
+    
+    color: #FFFFFF;
+    
+    text-align: center;
+}
+
+.container {
+    background-color: #FFFFFF;
+    
+    min-height: 200px;
+    
+    border: 1px #168ACC solid;
+}
+
+.copyright {
+    text-align: right;
+    font-size: 7pt;
+    color: #535353;
+    padding: 5px;
+}
+
+.copyright a {
+    text-decoration: none;
+    color: #535353;
+}
+
+
+/* 이름 입력 화면 */
+
+.input {
+    background-color: #168ACC;
+    padding: 10px;
+}
+
+.input input {
+    width: 100%;
+    
+    background-color: transparent;
+    border: 0px;
+    
+    font-size: 18pt;
+    
+    color: #FFFFFF;
+}
+
+/* placeholder 적용 CSS */
+::-webkit-input-placeholder {
+    color: #CBCBCB;
+}
+:-moz-placeholder {
+    color: #CBCBCB;
+    opacity: 1;
+}
+::-moz-placeholder {
+    color: #CBCBCB;
+    opacity: 1;
+}
+:-ms-input-placeholder {
+    color: #CBCBCB;
+}
+
+.number_selector {
+    text-align: center;
+    background-color: #168ACC;
+    
+    font-size: 18pt;
+    color: #FFFFFF;
+}
+
+.number_selector div {
+    width: 24%;
+    display: inline-block;
+    margin: 0px;
+}
+
+/* 당첨자 수 제어기 */
+.number_selector div:nth-child(1) {
+    text-align: right; /* - 버튼 */
+}
+.number_selector div:nth-child(3) {
+    text-align: left; /* 명 */
+}
+.number_selector div:nth-child(4) {
+    text-align: left; /* + 버튼 */
+}
+
+.number_selector div input {
+    width: 100%;
+    
+    background-color: transparent;
+    border: 0px;
+    
+    font-size: 18pt;
+    
+    color: #FFFFFF;
+    
+    text-align: right;
+}
+
+.item {
+    border: 1px #EFEFEF solid;
+    background-color: #F6F6F6;
+    
+    min-width: 100px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+    display: inline-block;
+  
+    text-align: center;
+    padding: 10px;
+}
+
+.item img {
+    display: none;
+    
+    float: right;
+    width: 20px;
+    
+    cursor: pointer;
+}
+
+/* 결과 화면 CSS */
+
+.result {
+    height: 650px;
+
+    background-image: url('../images/logo.png');
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: 75px;
+    
+    display: table-cell;
+    width: 680px;
+    
+    vertical-align: middle;
+    text-align: center;
+}
+
+.result div {
+    display: inline-block;
+    
+    vertical-align: middle;
+    text-align: center;
+    
+    min-width: 200px;
+    margin: 10px;
+    
+    font-size: 20pt;
+    color: #535353;
+}
+
+.result div img {
+    display: none; /* 같이 생성되는 삭제 이미지를 보이지 않도록 한다. */
+}

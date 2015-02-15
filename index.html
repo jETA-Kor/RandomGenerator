@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>랜덤 추첨기</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link href='https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css' />
+        
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="root" id="settingRoot">
+            <div class="title">이벤트 추첨</div>
+            
+            <div class="input">
+                <input id="inputBox" type="text" placeholder="이름을 입력하고 Enter를 누르세요." />
+            </div>
+            
+            <div class="container"></div>
+            
+            <div id="number_selector" class="number_selector">
+                <div onclick="decrease()">-</div>
+                <div><input id="numbers" type="text" value="1" /></div>
+                <div>명</div>
+                <div onclick="increase()">+</div>
+            </div>
+            
+            <div id="btn_generate" class="title">
+                추첨하기
+            </div>
+            
+            <div class="copyright"></div>
+        </div>
+        
+        <div class="root" id="resultRoot" style="display: none;">
+            <div class="title">이벤트 추첨 결과</div>
+            
+            <div class="result container"></div>
+            
+            <div class="copyright"></div>
+        </div>
+    </body>
+</html>
