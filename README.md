@@ -21,7 +21,9 @@
 + images 폴더 안에 복사해 넣습니다.
 
 :: 저작권
-+ 저작자: JoonChul Kim (jETA) (facebook.com/jetalog.net) (jeta@jetalog.net)
++ 저작자: JoonChul Kim (jETA)
+   - http://facebook.com/jetalog.net
+   - jeta@jetalog.net
 + 이 어플리케이션은 CCL4.0에 따릅니다.
 + 저작자 표시 / 동일 조건 변경 허락 / 영리적 사용 가능
 + http://creativecommons.org/licenses/by-sa/4.0
