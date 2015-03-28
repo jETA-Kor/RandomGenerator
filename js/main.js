@@ -1,9 +1,10 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20150215-004"; // 버전명
+    version = "20150328-001"; // 버전명
     
     $("#inputBox").keypress(enter_request); // Enter 입력 이벤트 바인딩
     $("#btn_generate").click(generate); // 추첨하기 버튼 이벤트 바인딩
+    $("#resultRoot .title").click(undo); // 결과 취소 바인딩
     
     $("#reseltRoot").hide(); // 결과 화면 숨기기
     
@@ -11,7 +12,7 @@ $(document).ready(function() {
         "랜덤 추첨기 " + version + "<br />" +
         "Copyright 2015~ <a href=\"mailto:jeta@jetalog.net?Subject=랜덤%20추첨기(" +
         version +
-        ")%20문의\">JoonChul Kim</a>." + 
+        ")%20문의\">JoonChul Kim</a>. " + 
         "All rights reserved."
     ); // Copyright 입력
 });
@@ -106,7 +107,7 @@ function generate() {
 
 /* 결과 출력 */
 function showResult(resultData) {
-    $("#resultRoot container").html("");
+    $("#resultRoot .container").html("");
     
     for(var i = 0; i < resultData.length; i++) {
         $("#resultRoot .container").append(
@@ -117,4 +118,10 @@ function showResult(resultData) {
     $("#settingRoot").fadeOut(500, function() {
         $("#resultRoot").fadeIn(500);
     });
+}
+
+/* 결과 취소 */
+function undo() {
+    $("#resultRoot").hide();
+    $("#settingRoot").show();
 }
