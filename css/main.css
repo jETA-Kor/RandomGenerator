@@ -142,7 +142,7 @@ body {
 /* 결과 화면 CSS */
 
 .result {
-    height: 650px;
+    height: 600px;
 
     background-image: url('../images/logo.png');
     background-position: right top;

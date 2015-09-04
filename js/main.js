@@ -1,10 +1,26 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20150328-001"; // 버전명
+    version = "20150904-001"; // 버전명
+    names = new Array();
+    
+    if(localStorage.getItem('names') != null && localStorage.getItem('names') != "[]") {
+        if(confirm("기존 추첨 대상자 목록이 발견되었습니다.\n불러오시겠습니까?")) {
+            names = JSON.parse(localStorage.getItem('names'));
+            for(var i = 0; i < names.length; i++) {
+                inputNewItem(names[i]);
+            }
+        } else {
+            localStorage.removeItem('names');
+        }
+    }
+    
+    if(localStorage.getItem('number') != null)
+        $("#numbers").val(localStorage.getItem('number'));
     
     $("#inputBox").keypress(enter_request); // Enter 입력 이벤트 바인딩
     $("#btn_generate").click(generate); // 추첨하기 버튼 이벤트 바인딩
     $("#resultRoot .title").click(undo); // 결과 취소 바인딩
+    $("#numbers").change(function() { localStorage.setItem("number", $("#numbers").val()); });
     
     $("#reseltRoot").hide(); // 결과 화면 숨기기
     
@@ -18,27 +34,27 @@ $(document).ready(function() {
 });
 
 /* 새 이름 입력하기 */
-function inputNewItem() {
-    $('#settingRoot .container').append(
-        '<div class="item">' + $('#inputBox').val() + '<img src="images/delete.png" />' + '</div>' + '\n'
-    );
+function inputNewItem(param) {
+    var tmp = document.createElement('div');
+    tmp.className = "item";
+    tmp.setAttribute("data-name", param);
+    tmp.innerHTML = param + '<img src="images/delete.png" />';
     
-    $('#inputBox').val('');
+    // 삭제 버튼 제어
+    tmp.addEventListener("mouseover", function() { $(this).children("img").show(); });
+    tmp.addEventListener("mouseout", function() { $(this).children("img").hide(); });
     
-    $("#settingRoot .container div").hover(
-        function() {
-            $(this).children("img").show();
-        },
-        function() {
-            $(this).children("img").hide();
-        }
-    ); // 삭제 버튼 제어
+    // 삭제 이벤트 바인딩
+    var deleteImage = tmp.getElementsByTagName('img')[0];
+    deleteImage.addEventListener("click", function() {
+        console.log(names.indexOf($(this).parent().attr("data-name")));
+        names.splice(names.indexOf($(this).parent().attr("data-name")), 1);
+        localStorage.setItem('names', JSON.stringify(names));
+
+        $(this).parent().remove();
+    });
     
-    $("#settingRoot .container div img").click(
-        function() {
-            $(this).parent().remove();
-        }
-    ); // 삭제 이벤트 바인딩
+    $('#settingRoot .container').append(tmp);
 }
 
 /* Enter 이벤트 */
@@ -48,8 +64,13 @@ function enter_request(e) {
 	if (keycode == '13') {
         if($("#inputBox").val() == "")
             alert("이름을 입력해주세요.");
-        else
-            inputNewItem();
+        else {
+            names.push($('#inputBox').val());
+            localStorage.setItem('names', JSON.stringify(names));
+            
+            inputNewItem($('#inputBox').val());
+            $('#inputBox').val('');
+        }
 	}
 
 	e.stopPropagation();
@@ -60,12 +81,16 @@ function decrease() {
     var number = $("#numbers").val();
     
     $("#numbers").val(--number);
+    
+    localStorage.setItem("number", number);
 }
 
 function increase() {
     var number = $("#numbers").val();
     
     $("#numbers").val(++number);
+    
+    localStorage.setItem("number", number);
 }
 
 /* 추첨하기 */

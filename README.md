@@ -18,6 +18,11 @@
 + 이름을 logo.png로 변경합니다.
 + images 폴더 안에 복사해 넣습니다.
 
+:: Version History
++ 20150904-001
+   - LocalStorage에 저장: 기존 추첨 인원, 추첨할 사람 수
+   - 결과화면 높이 조정
+
 :: 저작권
 + 저작자: JoonChul Kim (jETA)
    - http://facebook.com/jetalog.net
