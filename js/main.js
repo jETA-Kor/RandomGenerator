@@ -1,18 +1,11 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20150904-001"; // 버전명
+    version = "20151027-001"; // 버전명
     names = new Array();
     
-    if(localStorage.getItem('names') != null && localStorage.getItem('names') != "[]") {
-        if(confirm("기존 추첨 대상자 목록이 발견되었습니다.\n불러오시겠습니까?")) {
-            names = JSON.parse(localStorage.getItem('names'));
-            for(var i = 0; i < names.length; i++) {
-                inputNewItem(names[i]);
-            }
-        } else {
-            localStorage.removeItem('names');
-        }
-    }
+    $(".applyBackgroundColor").css("background-color", backgroundColor);
+    $(".applyColor").css("color", color);
+    $(".container").css("border", "1px " + backgroundColor + " solid");
     
     if(localStorage.getItem('number') != null)
         $("#numbers").val(localStorage.getItem('number'));
@@ -31,6 +24,17 @@ $(document).ready(function() {
         ")%20문의\">JoonChul Kim</a>. " + 
         "All rights reserved."
     ); // Copyright 입력
+    
+    if(localStorage.getItem('names') != null && localStorage.getItem('names') != "[]") {
+        if(confirm("기존 추첨 대상자 목록이 발견되었습니다.\n불러오시겠습니까?")) {
+            names = JSON.parse(localStorage.getItem('names'));
+            for(var i = 0; i < names.length; i++) {
+                inputNewItem(names[i]);
+            }
+        } else {
+            localStorage.removeItem('names');
+        }
+    }
 });
 
 /* 새 이름 입력하기 */
