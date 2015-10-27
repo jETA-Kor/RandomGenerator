@@ -23,6 +23,9 @@ body {
     background-color: #FFFFFF;
     
     min-height: 200px;
+    max-height: 420px;
+    
+    overflow-y: auto;
 }
 
 .copyright {
