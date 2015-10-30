@@ -1,11 +1,22 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20151027-002"; // 버전명
+    version = "20151031-001"; // 버전명
     names = new Array();
     
-    $(".applyBackgroundColor").css("background-color", backgroundColor);
-    $(".applyColor").css("color", color);
-    $(".container").css("border", "1px " + backgroundColor + " solid");
+    $(".applyBackgroundColor").css("background-color", preset.backgroundColor);
+    $(".applyColor").css("color", preset.color);
+    $("#title").html(preset.title);
+    $(".container").css("border", "1px " + preset.backgroundColor + " solid");
+    $("#setBackgroundColor").val(preset.backgroundColor);
+    $("#setColor").val(preset.color);
+    $("#setTitle").val(preset.title);
+    
+    $("#setBackgroundColor").bind("keyup", changeBackgroundColor);
+    $("#setBackgroundColor").bind("blur", changeBackgroundColor);
+    $("#setColor").bind("keyup", changeColor);
+    $("#setColor").bind("blur", changeColor);
+    $("#setTitle").bind("keyup", changeTitle);
+    $("#setTitle").bind("blur", changeTitle);
     
     if(localStorage.getItem('number') != null)
         $("#numbers").val(localStorage.getItem('number'));
@@ -85,6 +96,7 @@ function decrease() {
     var number = $("#numbers").val();
     
     $("#numbers").val(--number);
+    if($("#numbers").val() < 1) $("#numbers").val("1");
     
     localStorage.setItem("number", number);
 }
@@ -101,6 +113,13 @@ function increase() {
 function generate() {
     var numbers = $('#numbers').val();
     var cnt_Names = $("#settingRoot .container > div").length; // 현재 담겨있는 이름 수
+    
+    if(numbers < 1) {
+        alert('추첨할 사람이 없습니다.');
+        $("#numbers").val("1");
+        
+        return false;
+    }
     
     if(cnt_Names < numbers) {
         alert('추첨할 사람이 전체 대상보다 많습니다.');
@@ -153,4 +172,52 @@ function showResult(resultData) {
 function undo() {
     $("#resultRoot").hide();
     $("#settingRoot").show();
+}
+
+/* 테마 자동 변경 */
+function changeBackgroundColor() {
+    var regex = /^(#([\da-f]{1,2}){3})$/i;
+    if(!regex.test($("#setBackgroundColor").val()))
+        return false;
+    
+    preset.backgroundColor = $("#setBackgroundColor").val();
+    
+    $(".applyBackgroundColor").css("background-color", preset.backgroundColor);
+    $(".container").css("border", "1px " + preset.backgroundColor + " solid");
+}
+
+function changeColor() {
+    var regex = /^(#([\da-f]{1,2}){3})$/i;
+    if(!regex.test($("#setColor").val()))
+        return false;
+    
+    preset.color = $("#setColor").val();
+    
+    $(".applyColor").css("color", preset.color);
+}
+
+function changeTitle() {
+    preset.title = $("#setTitle").val();
+    
+    $("#title").html($("#setTitle").val());
+}
+
+/* 테마 생성 */
+function createNewTheme() {
+    var preset = new Object();
+    
+    preset.backgroundColor = $("#setBackgroundColor").val();
+    preset.color = $("#setColor").val();
+    preset.title = $("#setTitle").val();
+    
+    $.ajax({
+        method: "POST",
+        url: "newTheme.php",
+        data: {
+            title: preset.title,
+            settings: JSON.stringify(preset)
+        }
+    }).done(function(themeID) {
+        $("#themeURL").html("http://jeta.pe.hu/random?code=" + themeID);
+    });
 }

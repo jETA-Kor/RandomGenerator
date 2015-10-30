@@ -5,6 +5,8 @@ body {
     font-family: 'Nanum Barun Gothic', 'Malgun Gothic', '맑은 고딕', 'Helvetica', 'helvetica';
 }
 
+input { outline: none; }
+
 .root {
     width: 680px;
     margin: auto;
@@ -17,6 +19,8 @@ body {
     height: 30px;
         
     text-align: center;
+    
+    cursor: default;
 }
 
 .container {
@@ -87,12 +91,14 @@ body {
 /* 당첨자 수 제어기 */
 .number_selector div:nth-child(1) {
     text-align: right; /* - 버튼 */
+    cursor: pointer;
 }
 .number_selector div:nth-child(3) {
     text-align: left; /* 명 */
 }
 .number_selector div:nth-child(4) {
     text-align: left; /* + 버튼 */
+    cursor: pointer;
 }
 
 .number_selector div input {
@@ -119,6 +125,8 @@ body {
   
     text-align: center;
     padding: 10px;
+    
+    cursor: default;
 }
 
 .item img {
@@ -162,4 +170,43 @@ body {
 
 .result div img {
     display: none; /* 같이 생성되는 삭제 이미지를 보이지 않도록 한다. */
+}
+
+/* Global Menu */
+
+#globalMenu {
+    position: fixed;
+    
+    bottom: 0px;
+    left: 0px;
+    
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    
+    text-align: center;
+    font-size: 9pt;
+}
+
+#globalMenu > input {
+    margin-right: 20px;
+    text-align: center;
+    border: 1px solid #EFEFEF;
+}
+#globalMenu > input.small { width: 70px; }
+#globalMenu > input.big { width: 140px; }
+
+#globalMenu button {
+    width: 50px;
+    height: 20px;
+    
+    border-radius: 0px;
+    margin-right: 20px;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    border: 1px #EFEFEF solid;
+    background-color: #F6F6F6;
 }
