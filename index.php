@@ -1,20 +1,7 @@
 <?php
-if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") {
-    // configuration
-    $dbtype		= "InnoDB";
-    $dbhost 	= "localhost";
-    $dbport     = "8889";
-    $dbname		= "random_generator";
-    $dbuser		= "root";
-    $dbpass		= "root";
+    if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") {
+        include 'dbconn.php';
 
-    try{
-        // database connection
-        $conn = new PDO("mysql:host=$dbhost;port=$port;dbname=$dbname",$dbuser,$dbpass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-        } catch(Exception $e) {
-        echo "Error";
-    }
-        
         // new data
         $settingcode = $_REQUEST['code'];
 
@@ -23,9 +10,9 @@ if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") {
         $q = $conn->prepare($sql);
         $q->execute(array(':code'=>$settingcode));
         $result = $q->fetch();
-        
+
         $preset = $result["settings"];
-}
+    }
 ?>
 
 <!doctype html>

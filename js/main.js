@@ -1,6 +1,6 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20151031-001"; // 버전명
+    version = "20151031-002"; // 버전명
     names = new Array();
     
     $(".applyBackgroundColor").css("background-color", preset.backgroundColor);
