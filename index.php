@@ -19,7 +19,12 @@
 <html>
     <head>
         <title>랜덤 추첨기</title>
+        
         <meta charset="utf-8" />
+        <meta name="title" content="랜덤 추첨기" />
+        <meta name="description" content="점심 내기를 할 때 효과가 좋습니다." />
+        
+        <link rel="image_src" href="images/thumbnail.png" />
         <link rel="stylesheet" href="css/main.css" />
         <link href='//cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css' />
         
