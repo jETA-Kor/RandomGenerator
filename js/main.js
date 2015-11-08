@@ -1,6 +1,6 @@
 /** 초기화 **/
 $(document).ready(function() {
-    version = "20151031-002"; // 버전명
+    version = "20151108-001"; // 버전명
     names = new Array();
     
     $(".applyBackgroundColor").css("background-color", preset.backgroundColor);
@@ -17,6 +17,7 @@ $(document).ready(function() {
     $("#setColor").bind("blur", changeColor);
     $("#setTitle").bind("keyup", changeTitle);
     $("#setTitle").bind("blur", changeTitle);
+    $('#setLogo').change(changeLogo);
     
     if(localStorage.getItem('number') != null)
         $("#numbers").val(localStorage.getItem('number'));
@@ -155,6 +156,8 @@ function generate() {
 
 /* 결과 출력 */
 function showResult(resultData) {
+    $(".result").css("background-image", "url(" + preset.logo + ")");
+    
     $("#resultRoot .container").html("");
     
     for(var i = 0; i < resultData.length; i++) {
@@ -202,10 +205,46 @@ function changeTitle() {
     $("#title").html($("#setTitle").val());
 }
 
-/* 테마 생성 */
-function createNewTheme() {
-    var preset = new Object();
+/* 로고 등록 */
+function changeLogo() {
+    if(typeof(changing) != 'undefined' && changing) {
+        alert('로고 업로드 중입니다.\n잠시만 기다려 주세요.');
+        return false;
+    }
     
+    var FR = new FileReader();
+    FR.onload = function(e) {
+        changing = true;
+
+        $.ajax({
+            url: "https://api.imgur.com/3/upload",
+            beforeSend: function (xhr) {xhr.setRequestHeader("Authorization", "Client-ID c657826f3d6ab44");},
+            type: "POST",
+            data: {
+                image: e.target.result.replace(/.*,/, '')
+            },
+            datatype: "json",
+            success: function(response) {
+                alert('새 로고가 업로드 되었습니다.');
+                
+                preset.logo = response.data.link;
+
+                delete changing;
+            },
+            error: function(response) {
+                if(confirm('새 로고를 업로드하지 못했습니다.\n개발자에게 항의하시겠습니까?')) {
+                    location.href="mailto:jeta@jetalog.net?Subject=랜덤%20추첨기(" + version + ")%20에 이미지 업로드가 되지 않잖아요!";
+                }
+
+                delete changing;
+            }
+        });
+    };
+    FR.readAsDataURL( document.getElementById('setLogo').files[0] );
+}
+
+/* 테마 생성 */
+function createNewTheme() {    
     preset.backgroundColor = $("#setBackgroundColor").val();
     preset.color = $("#setColor").val();
     preset.title = $("#setTitle").val();

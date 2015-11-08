@@ -143,7 +143,6 @@ input { outline: none; }
 .result {
     height: 550px;
 
-    background-image: url('../images/logo.png');
     background-position: right top;
     background-repeat: no-repeat;
     background-size: 75px;
@@ -197,7 +196,7 @@ input { outline: none; }
 #globalMenu > input.big { width: 140px; }
 
 #globalMenu button {
-    width: 50px;
+    width: 70px;
     height: 20px;
     
     border-radius: 0px;
@@ -210,3 +209,5 @@ input { outline: none; }
     border: 1px #EFEFEF solid;
     background-color: #F6F6F6;
 }
+
+#globalMenu #setLogo { opacity: 0; width: 70px; margin-left: -90px; }

@@ -33,7 +33,7 @@
                 if(isset($preset) && trim($preset) != "")
                     echo "preset = " . $preset;
                 else
-                    echo "preset = {'backgroundColor': '#13C276', 'color': '#FFFFFF', 'title': '이벤트 추첨'}";
+                    echo "preset = {'backgroundColor': '#13C276', 'color': '#FFFFFF', 'title': '이벤트 추첨', 'logo': '../image/logo.png'}";
             ?>
         </script>
         
@@ -77,8 +77,15 @@
             배경색 <input type="text" id="setBackgroundColor" class="small" />
             전경색 <input type="text" id="setColor" class="small" />
             추첨기 이름 <input type="text" id="setTitle" class="big" />
+            <button>로고 설정</button><input type="file" id="setLogo" accept="image/*" />
             <button onclick="createNewTheme()">생성</button>
-            <span id="themeURL">http://jeta.pe.hu/random?code=00000000000000</span>
+            <?php
+            if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") {
+                echo "<span id='themeURL'>http://jeta.pe.hu/random?code=" . $_REQUEST['code'] . "</span>";
+            } else {
+                echo "<span id='themeURL'>http://jeta.pe.hu/random?code=00000000000000</span>";
+            }
+            ?>
         </div>
     </body>
 </html>
