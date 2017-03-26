@@ -79,7 +79,7 @@
             추첨기 이름 <input type="text" id="setTitle" class="big" />
             <button>로고 설정</button><input type="file" id="setLogo" accept="image/*" />
             <button onclick="createNewTheme()">생성</button>
-            <input id="m" class="applyColor applyBackgroundColor" value="http://jetalab.net/random?code=<?php if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") { echo $_REQUEST['code']; } else { echo '00000000000000';} ?>" />
+            <input id="themeURL" class="applyColor applyBackgroundColor" value="http://jetalab.net/random?code=<?php if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") { echo $_REQUEST['code']; } else { echo '00000000000000';} ?>" />
         </div>
     </body>
 </html>
