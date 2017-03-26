@@ -81,9 +81,9 @@
             <button onclick="createNewTheme()">생성</button>
             <?php
             if(isset($_REQUEST['code']) && trim($_REQUEST['code']) != "") {
-                echo "<span id='themeURL'>http://jeta.pe.hu/random?code=" . $_REQUEST['code'] . "</span>";
+                echo "<input id='themeURL' value='http://jetalab.net/random?code=" . $_REQUEST['code'] . "' />";
             } else {
-                echo "<span id='themeURL'>http://jeta.pe.hu/random?code=00000000000000</span>";
+                echo "<input id='themeURL' value='http://jetalab.net/random?code=00000000000000' />";
             }
             ?>
         </div>
